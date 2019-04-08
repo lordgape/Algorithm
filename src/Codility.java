@@ -1,5 +1,8 @@
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Arrays;
+
+import javax.print.attribute.standard.Finishings;
 
 public class Codility {
 
@@ -42,13 +45,13 @@ public class Codility {
 //		System.out.println(permMissingElem(D));
 
 		
-		// Smallest Missing Integer
-		System.out.println("");
-		System.out.println("Smallest Missing Integer");
-		int [] D1 = {-1,2};
-		
-		
-		System.out.println(smallestMissingInteger(D1));
+//		// Smallest Missing Integer
+//		System.out.println("");
+//		System.out.println("Smallest Missing Integer");
+//		int [] D1 = {-1,2};
+//		
+//		
+//		System.out.println(smallestMissingInteger(D1));
 
 		
 		
@@ -63,9 +66,83 @@ public class Codility {
 		//System.out.println(muplicatic(F,G));
 		
 		
+		// Tape Equilibrium
+		System.out.println("");
+		System.out.println("Tape Equilibrium");
+		int [] H = {3,1,2,4,3};
+		
+		
+		System.out.println(tapeEquilibrium(H));
+		
+		
 		
 
 
+	}
+
+	private static int tapeEquilibrium(int[] A) {
+		
+		// N is an integer within the range [2..100,000];
+		// each element of array A is an integer within the range [−1,000..1,000].
+		
+		if(A.length < 2)
+			return 0;
+		
+		int pCycle = A.length - 1;
+		
+		int p = 1;
+		
+		int smallest = 0;
+		
+		
+		
+		for(int i=0;i<pCycle; i++)
+		{
+			int result = computeEquilibruim(p,A) ;
+			
+			
+			if(i > 0)
+			{
+				if(result < smallest)
+					smallest = result;
+			}
+			else
+			{
+				smallest = result;
+			}
+			
+			
+			p++;
+			
+		}
+		
+		
+		return smallest;
+	}
+
+	private static int computeEquilibruim(int p,int [] A) {
+		
+		int firstPartSum = 0;
+		int secondPartSum = 0;
+		int pFiinalValue = p;	
+		int N = A.length;
+		
+		while (p >= 1 )
+		{
+			firstPartSum+= A[p-1];
+			--p;
+		}
+
+		while (N > pFiinalValue )
+		{
+			secondPartSum+= A[N-1];
+			
+			--N;
+		}
+		 
+		return Math.abs(firstPartSum - secondPartSum); 
+		 
+		 
 	}
 
 	private static int muplicatic(int[] A, int[] B) {
