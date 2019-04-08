@@ -66,18 +66,56 @@ public class Codility {
 		//System.out.println(muplicatic(F,G));
 		
 		
+//		// Tape Equilibrium
+//		System.out.println("");
+//		System.out.println("Tape Equilibrium");
+//		int [] H = {3,1,2,4,3};
+//		
+//		
+//		System.out.println(tapeEquilibrium(H));
+		
+		
 		// Tape Equilibrium
 		System.out.println("");
-		System.out.println("Tape Equilibrium");
-		int [] H = {3,1,2,4,3};
+		System.out.println("Perm Check");
+		int [] I = {3,1,2,4,5};
 		
 		
-		System.out.println(tapeEquilibrium(H));
+		System.out.println(PermCheck(I));
 		
 		
 		
 
 
+	}
+
+	private static int PermCheck(int[] A) {
+		
+		
+		Arrays.sort(A);
+		
+		if (A.length < 1)
+			return 0;
+		
+		int lastValue = A[0];
+
+		for(int i = 0; i < A.length ; i++)
+		{
+			if(A[i] > A.length)
+				return 0;
+			
+			if(i > 0)
+			{
+				if(A[i] == lastValue)
+					return 0;
+			}
+			
+			
+			lastValue = A[i];
+		}
+					
+
+		return 1;
 	}
 
 	private static int tapeEquilibrium(int[] A) {
@@ -99,16 +137,18 @@ public class Codility {
 		for(int i=0;i<pCycle; i++)
 		{
 			int result = computeEquilibruim(p,A) ;
-			
+						
 			
 			if(i > 0)
-			{
+			{				
+				
 				if(result < smallest)
 					smallest = result;
 			}
 			else
 			{
 				smallest = result;
+				
 			}
 			
 			
